@@ -1,9 +1,7 @@
 ﻿using FluentAssertions;
-using Kontur.Courses.Testing.Implementations;
 using NUnit.Framework;
-using System.Linq;
 
-namespace Kontur.Courses.Testing
+namespace Kontur.Courses.Testing.Implementations
 {
 	[TestFixture]
 	public class WordsStatistics_Tests
@@ -33,7 +31,7 @@ namespace Kontur.Courses.Testing
 		{
 			stat.AddWord("xxxxxxxxxx");
 			stat.AddWord("xxxxxxxxxx");
-			stat.GetStatistics().Count().Should().Be(1);
+			stat.GetStatistics().Should().HaveCount(1);
 		}
 
 		// FluentAssetions docs: http://www.fluentassertions.com/

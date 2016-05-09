@@ -1,14 +1,15 @@
-﻿using System;
-using System.CodeDom.Compiler;
+﻿using FireSharp;
+using FireSharp.Config;
+using Kontur.Courses.Testing.Implementations;
+using NUnit.Engine;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml;
-using Kontur.Courses.Testing.Implementations;
-using NUnit.Engine;
 
 namespace Kontur.Courses.Testing
 {
@@ -22,16 +23,33 @@ namespace Kontur.Courses.Testing
 				if (TestsAreValid(testRunner))
 				{
 					var incorrectImplementations = ChallengeHelpers.GetIncorrectImplementations();
-					CheckImplementationsFail(testRunner, incorrectImplementations);
+					var results = new List<int>();
+					CheckImplementationsFail(testRunner, incorrectImplementations, results);
+					PostResults(results);
 				}
 		}
 
-		private static void CheckImplementationsFail(ITestRunner testRunner, IEnumerable<Type> implementations)
+		private static void PostResults(List<int> results)
+		{
+			var config = new FirebaseConfig
+			{
+				BasePath = "https://testing-challenge.firebaseio.com/"
+			};
+			using (var client = new FirebaseClient(config))
+			{
+				var name = Environment.UserName + "+" + Environment.MachineName;
+				name = Regex.Replace(name, @"\.|\$|\#|\[|\]|\/", "_");
+				client.Set(name, results);
+			}
+		}
+
+		private static void CheckImplementationsFail(ITestRunner testRunner, IEnumerable<Type> implementations, List<int> failLevels)
 		{
 			foreach (var implementation in implementations)
 			{
 				var failed = GetFailedTests(testRunner, implementation, false).ToList();
 				var name = implementation.Name.PadRight(20, ' ');
+				failLevels.Add(failed.Count);
 				if (failed.Any())
 				{
 					Console.ForegroundColor = ConsoleColor.Green;
@@ -51,7 +69,7 @@ namespace Kontur.Courses.Testing
 		{
 			try
 			{
-				var w = Console.WindowWidth-1;
+				var w = Console.WindowWidth - 1;
 				if (text.Length > w) return text.Substring(0, w);
 				else return text;
 			}
@@ -96,6 +114,22 @@ namespace Kontur.Courses.Testing
 				yield return xmlNode.Attributes["name"].Value;
 			}
 		}
+	}
+
+	public class ImplementationStatus
+	{
+		public ImplementationStatus()
+		{
+		}
+
+		public ImplementationStatus(string name, bool failed)
+		{
+			Name = name;
+			Failed = failed;
+		}
+
+		public string Name;
+		public bool Failed;
 	}
 
 	public class ChallengeHelpers

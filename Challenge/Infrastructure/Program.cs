@@ -31,16 +31,25 @@ namespace Kontur.Courses.Testing
 
 		private static void PostResults(List<int> results)
 		{
-			var config = new FirebaseConfig
+			try
 			{
-				BasePath = "https://testing-challenge.firebaseio.com/"
-			};
-			using (var client = new FirebaseClient(config))
-			{
-				var name = Environment.UserName + "+" + Environment.MachineName;
-				name = Regex.Replace(name, @"\.|\$|\#|\[|\]|\/", "_");
-				client.Set(name, results);
+				var config = new FirebaseConfig
+				{
+					BasePath = "https://testing-challenge.firebaseio.com/"
+				};
+				using (var client = new FirebaseClient(config))
+				{
+					var name = Environment.UserName + "+" + Environment.MachineName;
+					name = Regex.Replace(name, @"\.|\$|\#|\[|\]|\/", "_");
+					client.Set(name, results);
+				}
+				Console.WriteLine(".");
 			}
+			catch
+			{
+				Console.WriteLine("...");
+			}
+
 		}
 
 		private static void CheckImplementationsFail(ITestRunner testRunner, IEnumerable<Type> implementations, List<int> failLevels)

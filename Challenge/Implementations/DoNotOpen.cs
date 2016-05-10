@@ -251,7 +251,7 @@ namespace Kontur.Courses.Testing.Implementations
 
 		private char ToLower(char c)
 		{
-			if ("QWERTYUIOPLJHGFDSAZXCVBNM".Contains(c))
+			if ("QWERTYUIOPLJKHGFDSAZXCVBNM".Contains(c))
 				return (char)(c - 'D' + 'd');
 			else if ("ЙЦУКЕНГШЩЗФЫВАПРОЛДЯЧСМИТЬ".Contains(c))
 				return (char)(c - 'Я' + 'я');

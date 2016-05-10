@@ -2,6 +2,11 @@
 <head>
 	<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css">	
+	<style>
+		.no{background-color: red;}
+		.one{background-color: #9F9;}
+		.many{background-color: #3F3;}
+	</style>
 </head>
 <body>
 	<div id="container" />
@@ -9,8 +14,7 @@
 <script>
 	console.log("hi!");
 	var fb = new Firebase("https://testing-challenge.firebaseio.com/");
-	fb.once("value", function(snapshot) {
-		console.log("!");
+	fb.on("value", function(snapshot) {
 		var res = snapshot.val();
 		var html = "<table class='table table-condensed'>";
 		html += "<tr>";
@@ -25,7 +29,6 @@
 			html += "</tr>";
 		});
 		html += "</table>";
-		console.log(html);
 		document.getElementById("container").innerHTML = html;
 	});
 	
@@ -34,7 +37,7 @@
 	}
 
 	function formatCell(v){
-		var clazz = v == 0 ? "bg-danger" : (v == 1 ? "bg-warning" : "bg-success");
+		var clazz = v == 0 ? "no" : (v == 1 ? "one" : "many");
 		return "<td class='" + clazz + "'>" + v + "</td>"; 
 	}
 </script>

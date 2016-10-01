@@ -15,7 +15,8 @@ namespace Kontur.Courses.Testing.Implementations
 			if (string.IsNullOrWhiteSpace(word)) return;
 			word = word.Substring(0, 10);
 			int count;
-			stats[word.ToLower()] = stats.TryGetValue(word.ToLower(), out count) ? count + 1 : 1;
+			stats[word.ToLower()] = 
+				stats.TryGetValue(word.ToLower(), out count) ? count + 1 : 1;
 		}
 	}
 
@@ -50,7 +51,7 @@ namespace Kontur.Courses.Testing.Implementations
 		{
 			if (word == null) throw new ArgumentNullException("word");
 			if (string.IsNullOrWhiteSpace(word)) return;
-			if (word.Length - 1 > 10) word = word.Substring(0, 10);
+			if (word.Length > 11) word = word.Substring(0, 10);
 			int count;
 			stats[word.ToLower()] = stats.TryGetValue(word.ToLower(), out count) ? count + 1 : 1;
 		}
@@ -99,19 +100,8 @@ namespace Kontur.Courses.Testing.Implementations
 			if (word.Length > 10) word = word.Substring(0, 10);
 			if (string.IsNullOrWhiteSpace(word)) return;
 			int count;
-			stats[word.ToLower()] = stats.TryGetValue(word.ToLower(), out count) ? count + 1 : 1;
-		}
-	}
-
-
-	public class WordsStatisticsE4 : WordsStatistics
-	{
-		public override void AddWord(string word)
-		{
-			if (word.Length == 0 || word.All(char.IsWhiteSpace)) return;
-			if (word.Length > 10) word = word.Substring(0, 10);
-			int count;
-			stats[word.ToLower()] = stats.TryGetValue(word.ToLower(), out count) ? count + 1 : 1;
+			stats[word.ToLower()] = 
+				stats.TryGetValue(word.ToLower(), out count) ? count + 1 : 1;
 		}
 	}
 
@@ -137,20 +127,12 @@ namespace Kontur.Courses.Testing.Implementations
 	{
 		public override IEnumerable<Tuple<int, string>> GetStatistics()
 		{
-			return stats.OrderBy(kv => kv.Value)
+			return stats.OrderByDescending(kv => kv.Value)
+				.ThenBy(kv => kv.Key, StringComparer.Ordinal)
 				.Select(kv => Tuple.Create(kv.Value, kv.Key));
 		}
 	}
-
 	public class WordsStatisticsO4 : WordsStatistics
-	{
-		public override IEnumerable<Tuple<int, string>> GetStatistics()
-		{
-			return base.GetStatistics().OrderBy(t => t.Item2);
-		}
-	}
-
-	public class WordsStatisticsO5 : WordsStatistics
 	{
 		public override IEnumerable<Tuple<int, string>> GetStatistics()
 		{

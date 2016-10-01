@@ -107,6 +107,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Implementations\DoNotOpen.txt" />
     <Compile Include="Infrastructure\IncorrectImplementation_BaseTests.cs" />
     <Compile Include="IWordsStatistics.cs" />
     <Compile Include="Implementations\DoNotOpen.cs" />

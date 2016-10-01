@@ -41,7 +41,6 @@ namespace Kontur.Courses.Testing
 		public class WordsStatisticsCR_Tests : IncorrectImplementation_BaseTests { }
 		public class WordsStatisticsE2_Tests : IncorrectImplementation_BaseTests { }
 		public class WordsStatisticsE3_Tests : IncorrectImplementation_BaseTests { }
-		public class WordsStatisticsE4_Tests : IncorrectImplementation_BaseTests { }
 		public class WordsStatisticsL2_Tests : IncorrectImplementation_BaseTests { }
 		public class WordsStatisticsL3_Tests : IncorrectImplementation_BaseTests { }
 		public class WordsStatisticsL4_Tests : IncorrectImplementation_BaseTests { }
@@ -49,7 +48,6 @@ namespace Kontur.Courses.Testing
 		public class WordsStatisticsO2_Tests : IncorrectImplementation_BaseTests { }
 		public class WordsStatisticsO3_Tests : IncorrectImplementation_BaseTests { }
 		public class WordsStatisticsO4_Tests : IncorrectImplementation_BaseTests { }
-		public class WordsStatisticsO5_Tests : IncorrectImplementation_BaseTests { }
 		public class WordsStatistics_123_Tests : IncorrectImplementation_BaseTests { }
 		public class WordsStatistics_998_Tests : IncorrectImplementation_BaseTests { }
 		public class WordsStatistics_999_Tests : IncorrectImplementation_BaseTests { }

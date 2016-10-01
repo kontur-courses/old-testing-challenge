@@ -114,7 +114,7 @@ namespace Kontur.Courses.Testing
 			builder.AddTest(implementationType.FullName + "_Tests");
 			var report = testRunner.Run(null, builder.GetFilter());
 			Debug.Assert(report != null);
-			File.WriteAllText(String.Format("{0}.nunitReport.xml", implementationType.Name), report.OuterXml);
+			//File.WriteAllText(String.Format("{0}.nunitReport.xml", implementationType.Name), report.OuterXml);
 			var failedTestCases = report.SelectNodes("//test-case[@result='Failed']");
 			Debug.Assert(failedTestCases != null);
 			foreach (var xmlNode in failedTestCases.Cast<XmlNode>())

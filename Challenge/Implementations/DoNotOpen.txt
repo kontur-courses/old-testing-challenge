@@ -1,0 +1,36 @@
+﻿WordsStatisticsC
+	нет ToLower при проверке наличия
+WordsStatisticsE
+	исключение при добавлении пустой строки
+WordsStatisticsL
+	Substring без if (падает на коротких строках)
+WordsStatisticsCR
+	не игнорирует пробельные строки
+WordsStatisticsE2
+	не падает на null
+WordsStatisticsE3
+	проверка на пустоту после обрезания
+WordsStatisticsL2
+	не обрезаются строки
+WordsStatisticsL3
+	строки длинной от 6 до 10 обрезаются неправильно
+WordsStatisticsL4
+	не обрезаются строки длины 11
+WordsStatisticsO1
+	не сортирует по частоте
+WordsStatisticsO2
+	не сортирует лексикографически
+WordsStatisticsO3
+	лексикографически методом ordinal
+WordsStatisticsO4
+	обратный лексикографический порядок
+WordsStatistics_123
+	собственный HashTable
+WordsStatistics_998
+	квадратичный алгоритм
+WordsStatistics_999
+	квадратичный алгоритм
+WordsStatistics_QWE
+	Ё
+WordsStatistics_STA
+	статическое поле
